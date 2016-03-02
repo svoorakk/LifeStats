@@ -1,0 +1,48 @@
+
+<SCRIPT language="javascript">
+function xmlhttpGet(strURL, callback) {
+	var xmlHttpReq;
+	// Mozilla/Safari/Chrome
+	if (window.XMLHttpRequest) {
+		xmlHttpReq = new XMLHttpRequest();
+	}
+	// IE
+	else if (window.ActiveXObject) {
+		xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlHttpReq.open('GET', strURL, true);
+	//add a callback 
+	xmlHttpReq.onreadystatechange = function() {
+		if (xmlHttpReq.readyState == 4) {  //if request is completed, go to callback function
+			if (xmlHttpReq.status == 200)
+				callback(null, xmlHttpReq.responseText);
+			else {
+				var err = {'errorText':xmlHttpReq.statusText, 
+						'errorDetail': xmlHttpReq.responseText,
+						'errorCode' : xmlHttpReq.status};
+				callback(err);
+			}
+		}
+	};
+	//send the data
+	xmlHttpReq.send();
+}
+
+var stop = 1898;
+xmlhttpGet("/ws/rtpi/"+stop, 
+	function(err, response) {
+		data = JSON.parse(response);
+		arrivals = data["39"];
+		var str = "";
+		arrivals.forEach(function(itm) {
+			str = str + "<DIV><SPAN STYLE='background-color:lime'>Due : </SPAN><SPAN STYLE='background-color:yellow'>" + itm.duetime + "</SPAN></DIV>";
+		})
+		document.getElementById("XX").innerHTML = str;
+	});
+
+</SCRIPT>
+<HTML>
+<BODY>
+<DIV id="XX">Getting data ...</DIV>
+</BODY>
+</HTML>
