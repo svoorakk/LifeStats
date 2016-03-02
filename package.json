@@ -16,6 +16,10 @@
   "license": "BSD",
   "readmeFilename": "README.md",
   "dependencies": {
+    "body-parser": "^1.15.0",
+    "compression": "^1.6.1",
+    "express": "^4.13.4",
+    "method-override": "^2.3.5",
     "request": "^2.69.0"
   }
 }
