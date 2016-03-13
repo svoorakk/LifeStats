@@ -13,3 +13,4 @@ app.listen(3000, function () {
 });
 
 app.get('/ws/rtpi/:stopid', routes.RTPIData);
+app.get('/ws/traffic/:setupid', routes.TrafficStats);

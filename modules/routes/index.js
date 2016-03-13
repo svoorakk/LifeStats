@@ -1,4 +1,5 @@
 var rtpi = require('../rtpi');
+var nradata = require('../nra');
 exports.RTPIData = function (req, res) {
 	var stopId = req.params.stopid;
 	rtpi.getRTPIData(stopId, function(err, data) {
@@ -9,5 +10,9 @@ exports.RTPIData = function (req, res) {
 		else {
 			res.send(data);			
 		}
-	})
+	});
+};
+
+exports.TrafficStats = function (req, res) {
+	
 };

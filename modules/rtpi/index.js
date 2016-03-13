@@ -1,5 +1,4 @@
 var request = require ("../httprequest").create();
-var fs = require("fs");
 var stop;
 exports.getRTPIData = function(stopid, callback) {
 	var url = "https://data.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid="+stopid+"&format=json";
