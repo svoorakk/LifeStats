@@ -1,8 +1,9 @@
-/**
- * New node file
- */
-var xx = require("../");
-callback = function(err) {
-	console.log("Setup list updated");
+var nra = require("../");
+cb = function(err, data) {
+	console.log(data);
+	console.log(err);
 };
-xx.NRASetupList(callback);
+
+nra.NRASetupList(cbSetup);
+
+nra.NRATrafficStats('NRA_000000001035', cb);

@@ -1,8 +1,8 @@
+//Module to get RTPI data
 var request = require ("../httprequest").create();
-var stop;
+//function to get real time bus data for a stop
 exports.getRTPIData = function(stopid, callback) {
 	var url = "https://data.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid="+stopid+"&format=json";
-	console.log(url);
 	request.get(url, 
 		function (err, body) {
 			if (err) {
@@ -10,12 +10,13 @@ exports.getRTPIData = function(stopid, callback) {
 				callback(err);
 			} 
 			else {
-				data = transformRTPI(body);
+				data = transformRTPI(body); //transform Json
 				callback(null, data);
 			}
 	});
 }; 
 
+//transforms the bus rtpi JSON from an Array to an object with bus nos as keys
 var transformRTPI = function (json) {
 	var RTPI = JSON.parse(json);
 	var results = RTPI.results;

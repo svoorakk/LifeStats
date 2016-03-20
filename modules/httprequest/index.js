@@ -1,3 +1,6 @@
+/**
+ * Module to make HTTP Get requests
+ */
 var request = require('request');
 
 var options={};
