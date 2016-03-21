@@ -3,6 +3,7 @@
  */
 var rtpi = require('../rtpi'); //module to fetch real-time traffic info
 var nradata = require('../nra'); //module to fetch NRA traffic stats
+var tiidata = require('../tii.ie'); //module to fetch NRA traffic stats
 //Function to handle request for RTPI data
 exports.RTPIData = function (req, res) {
 	var stopId = req.params.stopid; //stop no. for which data is required
@@ -17,6 +18,15 @@ exports.TrafficStats = function (req, res) {
 		sendResponse(res, err, data);
 	});
 };
+//Function to handle request for travel time data
+exports.TravelTime = function (req, res) {
+	var routeId = req.params.routeid; //id of the TTI route
+	tiidata.getTravelTime(routeId, function(err, data) {
+		sendResponse(res, err, data);
+	});
+};
+
+
 //Function to process output from modules and send it to response.
 var sendResponse = function (res, err, data) {
 	if (err) {

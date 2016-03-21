@@ -23,6 +23,7 @@
     "compression": "^1.6.1",
     "express": "^4.13.4",
     "method-override": "^2.3.5",
-    "request": "^2.69.0"
+    "request": "^2.69.0",
+    "xml2js": "^0.4.16"
   }
 }
