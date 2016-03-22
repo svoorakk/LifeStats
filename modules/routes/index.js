@@ -4,6 +4,7 @@
 var rtpi = require('../rtpi'); //module to fetch real-time traffic info
 var nradata = require('../nra'); //module to fetch NRA traffic stats
 var tiidata = require('../tii.ie'); //module to fetch NRA traffic stats
+var carparks = require('../carparks'); //module to fetch car park status
 //Function to handle request for RTPI data
 exports.RTPIData = function (req, res) {
 	var stopId = req.params.stopid; //stop no. for which data is required
@@ -22,6 +23,13 @@ exports.TrafficStats = function (req, res) {
 exports.TravelTime = function (req, res) {
 	var routeId = req.params.routeid; //id of the TTI route
 	tiidata.getTravelTime(routeId, function(err, data) {
+		sendResponse(res, err, data);
+	});
+};
+//Function to handle request for car park data
+exports.CarParks = function (req, res) {
+	var routeId = req.params.routeid; //id of the TTI route
+	carparks.getCarParkData(function(err, data) {
 		sendResponse(res, err, data);
 	});
 };
