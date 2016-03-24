@@ -20,3 +20,4 @@ app.get('/ws/rtpi/:stopid', routes.RTPIData);
 app.get('/ws/traffic/:setupid', routes.TrafficStats);
 app.get('/ws/traveltime/:routeid', routes.TravelTime);
 app.get('/ws/carparks', routes.CarParks);
+app.get('/ws/stationtrains/:stationid', routes.StationTrains);

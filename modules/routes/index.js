@@ -5,6 +5,7 @@ var rtpi = require('../rtpi'); //module to fetch real-time traffic info
 var nradata = require('../nra'); //module to fetch NRA traffic stats
 var tiidata = require('../tii.ie'); //module to fetch NRA traffic stats
 var carparks = require('../carparks'); //module to fetch car park status
+var irishRail = require('../irishrail'); //module to fetch irish rail data
 //Function to handle request for RTPI data
 exports.RTPIData = function (req, res) {
 	var stopId = req.params.stopid; //stop no. for which data is required
@@ -28,11 +29,18 @@ exports.TravelTime = function (req, res) {
 };
 //Function to handle request for car park data
 exports.CarParks = function (req, res) {
-	var routeId = req.params.routeid; //id of the TTI route
 	carparks.getCarParkData(function(err, data) {
 		sendResponse(res, err, data);
 	});
 };
+//Function to handle request for station upcoming train data
+exports.StationTrains = function (req, res) {
+	var stationId = req.params.stationid; //code of the station 
+	irishRail.getStationTrainData(stationId, function(err, data) {
+		sendResponse(res, err, data);
+	});
+};
+
 
 
 //Function to process output from modules and send it to response.
