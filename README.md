@@ -1,7 +1,7 @@
 # LifeStats
 
 ## Objective
-
+To provide transport information to Commuters
 
 
 ## Usage
